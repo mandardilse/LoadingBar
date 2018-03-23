@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LoaderService } from './shared/loader.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+  HttpActivity: boolean
+  constructor(private loader: LoaderService){
+    loader.getHtttpStatus().subscribe(
+      (status:boolean)=>{
+        this.HttpActivity = status
+        console.log(status)
+      }
+    )
+  }
 }
